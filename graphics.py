@@ -23,8 +23,8 @@ class Window:
     def close(self):
         self.__running = False
 
-    def draw_line(self, line, fill_color="black"):
-        line.draw(self.__canvas, fill_color)
+    def draw_line(self, line, fill_color="black", width=2):
+        line.draw(self.__canvas, fill_color, width)
 
 
 class Point:
@@ -37,9 +37,9 @@ class Line:
         self.p1 = p1
         self.p2 = p2
     
-    def draw(self, canvas, fill_color):
+    def draw(self, canvas, fill_color, width):
         canvas.create_line(
-            self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=fill_color, width=2
+            self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=fill_color, width=width
         )
 
 class Cell:
@@ -96,7 +96,7 @@ class Cell:
 
         fill_color = "red"
         if undo:
-            fill_color = "gray"
+            fill_color = "#d4d4d4"
 
         line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
-        self._win.draw_line(line, fill_color)
+        self._win.draw_line(line, fill_color, 4)
